@@ -10,10 +10,11 @@ interface ApiService {
     suspend fun getlatlngWeather(
         @Query("lat") lat: String,
         @Query("lon") lng: String,
-        @Query("appid") appid: String
+        @Query("appid") appid: String,
+        @Query("units") units:String
     ): WeatherDetails
 
     @GET("data/2.5/weather")
-    suspend fun getCityWeather(@Query("q") q: String, @Query("appid") appid: String): WeatherDetails
+    suspend fun getCityWeather(@Query("q") q: String, @Query("appid") appid: String, @Query("units") units:String): WeatherDetails
 
 }

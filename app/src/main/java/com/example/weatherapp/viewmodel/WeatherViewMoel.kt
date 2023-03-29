@@ -17,7 +17,7 @@ import javax.inject.Inject
 class WeatherViewMoel @Inject constructor(private val mainRepository: MainRepository,
                                           private val networkHelper: NetworkHelper):ViewModel(){
 
-    private fun getLatLngWeather(lat:String, lng:String,
+   private  fun getLatLngWeather(lat:String, lng:String,
         mLiveData: MutableLiveData<Resource<WeatherDetails>>
     ) {
         viewModelScope.launch {
@@ -62,7 +62,7 @@ class WeatherViewMoel @Inject constructor(private val mainRepository: MainReposi
         return mLiveData
     }
 
-    private fun getWeathercity(city: String,
+     fun getWeathercity(city: String,
                                mLiveData: MutableLiveData<Resource<WeatherDetails>>
     ): LiveData<Resource<WeatherDetails>> {
         getWeatherCity(city,mLiveData)

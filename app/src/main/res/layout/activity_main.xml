@@ -4,12 +4,242 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sky"
+    android:background="@drawable/bottom_shadow_header"
     tools:context=".view.MainActivity">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_weather_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/today_weather"
+        android:padding="@dimen/_7sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16ssp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/gilroy_semibold"
+        android:layout_centerVertical="true" />
+
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/at_city"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:completionThreshold="3"
+        app:layout_constraintWidth_percent="0.65"
+        android:background="@drawable/edit_text_corner_radius_grey"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:hint="@string/enter_city"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_14ssp"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_weather_details"
+      />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:background="@drawable/edit_text_corner_radius_grey"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_16ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/search"
+        android:gravity="center"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_weather_details"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_16ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/city"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/at_city"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_70ssp"
+        android:text="@string/_70"
+        android:drawableStart="@drawable/cloudy_day_2"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_city"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_lat_lng"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:text="@string/lat_lng"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_temperature"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_humidity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:text="@string/humidity"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lat_lng"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_preasure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:text="@string/preasure"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_humidity"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_feels_like"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:text="@string/feels_like"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preasure"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_sea_level"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:text="@string/sea_level"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_feels_like"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_ground_level"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:text="@string/ground_level"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sea_level"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_sun_rise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cloudy_day_2"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ground_level"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_sun_rise"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:text="@string/sunrise"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@+id/iv_sun_rise"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ground_level"
+       />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_sun_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cloudy_day_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ground_level"
+        app:layout_constraintEnd_toStartOf="@+id/tv_sun_set"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_sun_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.45"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gilroy_regular"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:text="@string/sunrise"
+        android:gravity="center"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ground_level"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
 

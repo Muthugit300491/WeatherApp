@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="today_weather"> Today\'s Weather</string>
+    <string name="humidity">Humidity</string>
+    <string name="sunrise">Sun Rise</string>
+    <string name="sunset">sunset</string>
+    <string name="preasure">Preasure</string>
+    <string name= "sea_level">Sea Level</string>
+    <string name= "ground_level">Ground Level</string>
+    <string name="feels_like">Feels Like</string>
+    <string name="enter_city">Enter city</string>
+    <string name="city">city_name</string>
+    <string name="lat_lng">10.2345,11,2345</string>
+    <string name="_70">50&#x2103;</string>
+    <string name="search">Search</string>
+
 </resources>

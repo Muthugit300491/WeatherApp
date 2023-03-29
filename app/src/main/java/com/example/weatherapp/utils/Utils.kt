@@ -5,12 +5,14 @@ import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
-
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 object Utils {
 
     val API_KEY = "9461d40f4ef5d4b99d35fdd196ca1b53"
+    val units = "metric"
 
 
 
@@ -25,6 +27,16 @@ object Utils {
             Log.e("Connectivity Exception", "" + e.message)
         }
         return connected
+    }
+
+     fun getDateTime(s: String): String? {
+        try {
+            val sdf = SimpleDateFormat("HH:mm")
+            val netDate = Date(s.toLong() * 1000)
+            return sdf.format(netDate)
+        } catch (e: Exception) {
+            return e.toString()
+        }
     }
 
 

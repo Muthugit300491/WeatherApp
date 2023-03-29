@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -27,6 +28,7 @@ import com.example.weatherapp.viewmodel.WeatherViewMoel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
+import com.kotlin.employee.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
     private var lat=0.00
     private var lng=0.00
+    private lateinit var arrayAdapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +74,6 @@ class MainActivity : AppCompatActivity() {
             @SuppressLint("MissingPermission")
             override fun run() {
                 fusedLocationProviderClient?.lastLocation?.addOnSuccessListener { location : Location? ->
-
                     if(location!=null){
                         lat= location.latitude
                         lng=location.longitude
@@ -82,8 +84,33 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-        },1000)
+        },500)
 
+        activityMainBinding.tvSearch.setOnClickListener{
+
+            arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayOf( activityMainBinding.atCity.text.toString()))
+            activityMainBinding.atCity.setAdapter(arrayAdapter)
+            getCity(activityMainBinding.atCity.text.toString())
+        }
+
+
+
+
+    }
+
+    fun setValues(weatherDetails: WeatherDetails){
+        activityMainBinding.tvCity.text=weatherDetails.name+","+weatherDetails.weather.get(0).main
+        activityMainBinding.tvLatLng.text= weatherDetails.coord?.lat.toString() +","+ weatherDetails.coord?.lon
+        activityMainBinding.tvTemperature.text=""+Math.round(weatherDetails.main?.tempMax?.toFloat()!!)+" \u2103"
+        activityMainBinding.tvHumidity.text=resources.getString(R.string.humidity)+":"+ weatherDetails.main!!.humidity+"%"
+        activityMainBinding.tvFeelsLike.text=resources.getString(R.string.feels_like)+":"+ weatherDetails.main!!.feelsLike+" \u2103"
+        activityMainBinding.tvPreasure.text=resources.getString(R.string.preasure)+":"+ weatherDetails.main!!.pressure+" "+"mbar"
+        activityMainBinding.tvSeaLevel.text=resources.getString(R.string.sea_level)+":"+ weatherDetails.main!!.seaLevel+" hPa"
+        activityMainBinding.tvGroundLevel.text=resources.getString(R.string.ground_level)+":"+ weatherDetails.main!!.grndLevel+" hPa"
+        val sunrise= Utils.getDateTime(weatherDetails.sys?.sunrise.toString())
+        activityMainBinding.tvSunRise.text=sunrise
+        val sunset= Utils.getDateTime(weatherDetails.sys?.sunset.toString())
+        activityMainBinding.tvSunSet.text= sunset
 
     }
 
@@ -93,8 +120,33 @@ class MainActivity : AppCompatActivity() {
             when (it.status) {
                 StatusCalled.SUCCESS -> {
                     pDialog.dismiss()
-                    if(it.data?.weather?.size!!>0){
+                    if(it.data!=null){
+                        setValues(it.data)
+                    }else{
+//                        categoryAdapter?.addItems(arrayListOf())
+                        showToast("No Product Details  found")
+                    }
+                }
+                StatusCalled.LOADING -> {
+                    pDialog.show()
+                }
+                StatusCalled.ERROR -> {
+                    //Handle Error
+                    pDialog.dismiss()
+                    showToast(it.message)
+                }
+            }
+        })
 
+    }
+    fun getCity(city:String){
+        val livedata=MutableLiveData<Resource<WeatherDetails>>()
+        weatherViewMoel.getWeathercity(city,livedata).observe(this, Observer {
+            when (it.status) {
+                StatusCalled.SUCCESS -> {
+                    pDialog.dismiss()
+                    if(it.data!=null){
+                        setValues(it.data)
                     }else{
 //                        categoryAdapter?.addItems(arrayListOf())
                         showToast("No Product Details  found")

@@ -10,11 +10,11 @@ import javax.inject.Inject
 class ApiHelperImpl @Inject constructor(private val apiService: ApiService) : ApiHelper {
 
     override fun getLatLngWeather(lat:String,lng:String)= flow {
-        emit(apiService.getlatlngWeather(lat,lng, Utils.API_KEY))
+        emit(apiService.getlatlngWeather(lat,lng, Utils.API_KEY,Utils.units))
     }
 
     override fun getCityWeather(city:String)=flow{
-        emit(apiService.getCityWeather(city,Utils.API_KEY))
+        emit(apiService.getCityWeather(city,Utils.API_KEY,Utils.units))
     }
 
 
